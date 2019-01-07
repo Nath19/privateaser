@@ -194,3 +194,32 @@ function decreasing_price()
 console.log("After the discount");
 decreasing_price();
 events.forEach(event=>{console.log("The price for this event is " + event.price);})
+
+
+
+
+//Step 3
+//Time to pay
+function pay_price()
+{
+  events.forEach(event=>{
+    bars.forEach(bar => {
+      actors.forEach(actor => {
+        if(actor.eventId==event.id){
+          actor.payment[1].amount=event.price*(0.7);
+          actor.payment[2].amount=0.5*(event.price*0.3);
+          actor.payment[3].amount=event.persons;
+          actor.payment[4].amount=event.price*0.3-(actor.payment[2].amount+actor.payment[3].amount);
+
+        }
+
+    });
+      });
+  });
+}
+
+console.log("Let's dispatch the money");
+pay_price();
+actors.forEach(actor=>{console.log(
+	"The amount due to the bar is : "+actor.payment[1].amount+ "\n"+"The amount due to the insurance is  "+actor.payment[2].amount 	+"\n"+"The amount due to the treasury is  "+actor.payment[3].amount 	+"\n"+"The amount due to the privateaser is  "+actor.payment[4].amount);
+})
