@@ -155,6 +155,7 @@ console.log(actors);
 //var people_component = events[i].persons * bars[i].pricePerPerson ;
 // booking price = time + people
 
+// Step 1
 function booking_price()
 {
 
@@ -168,4 +169,28 @@ function booking_price()
 }
 booking_price();
 console.log("Let's print all the price");
+events.forEach(event=>{console.log("The price for this event is " + event.price);})
+
+//Step 2
+// Decreasing pricing for people
+function decreasing_price()
+{
+  events.forEach(event=>{
+
+    if (event.persons>=10 && event.persons<20) {
+      event.price -=event.price*0.1;
+    }
+    if (event.persons>=20 && event.persons<60) {
+      event.price -=event.price*0.3;
+    }
+    if (event.persons>=60) {
+      event.price -=event.price*0.5;
+    }
+
+  });
+}
+
+
+console.log("After the discount");
+decreasing_price();
 events.forEach(event=>{console.log("The price for this event is " + event.price);})
