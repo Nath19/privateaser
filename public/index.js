@@ -168,6 +168,7 @@ function booking_price()
   });
 }
 booking_price();
+console.log("Step 1")
 console.log("Let's print all the price");
 events.forEach(event=>{console.log("The price for this event is " + event.price);})
 
@@ -190,7 +191,7 @@ function decreasing_price()
   });
 }
 
-
+console.log("Step 2")
 console.log("After the discount");
 decreasing_price();
 events.forEach(event=>{console.log("The price for this event is " + event.price);})
@@ -203,23 +204,17 @@ events.forEach(event=>{console.log("The price for this event is " + event.price)
 function pay_price()
 {
   events.forEach(event=>{
-    bars.forEach(bar => {
-      actors.forEach(actor => {
-        if(actor.eventId==event.id){
-          actor.payment[1].amount=event.price*(0.7);
-          actor.payment[2].amount=0.5*(event.price*0.3);
-          actor.payment[3].amount=event.persons;
-          actor.payment[4].amount=event.price*0.3-(actor.payment[2].amount+actor.payment[3].amount);
+      			event.commission.insurance=0.5*(event.price*0.3);
+      			event.commission.treasury=event.persons;
+      			event.commission.privateaser=event.price*0.3-(event.commission.insurance+event.commission.treasury);
 
-        }
-
-    });
-      });
-  });
+          })
 }
 
+console.log("Step 3")
 console.log("Let's dispatch the money");
 pay_price();
-actors.forEach(actor=>{console.log(
-	"The amount due to the bar is : "+actor.payment[1].amount+ "\n"+"The amount due to the insurance is  "+actor.payment[2].amount 	+"\n"+"The amount due to the treasury is  "+actor.payment[3].amount 	+"\n"+"The amount due to the privateaser is  "+actor.payment[4].amount);
+
+events.forEach(event=>{console.log(
+	"Amount for the bar is : "+event.price*(0.7)+"\n"+"Amount for the insurance is : "+event.commission.insurance +"\n"+"Amount for the treasury is : "+event.commission.treasury 	+"\n"+"Amount for the privateaser is : "+event.commission.privateaser);
 })
