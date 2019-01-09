@@ -218,3 +218,23 @@ pay_price();
 events.forEach(event=>{console.log(
 	"Amount for the bar is : "+event.price*(0.7)+"\n"+"Amount for the insurance is : "+event.commission.insurance +"\n"+"Amount for the treasury is : "+event.commission.treasury 	+"\n"+"Amount for the privateaser is : "+event.commission.privateaser);
 })
+
+
+//Step 4
+//The famous deductible
+//The booker is charged an additional 1€/person when he chooses the deductible reduction option.
+
+function deductible()
+{
+  events.forEach(event=>{
+    if(event.options.deductibleReduction==true)
+    {
+        event.price = event.price + event.persons;
+    }
+
+  	})
+}
+console.log("Step 4")
+console.log("As we can see just two of the events have choosen the deductible reduction")
+deductible()
+events.forEach(event=>{console.log("After the deductible reduction the price is : "+event.price);});
