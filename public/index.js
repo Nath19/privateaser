@@ -227,10 +227,11 @@ events.forEach(event=>{console.log(
 function deductible()
 {
   events.forEach(event=>{
-    if(event.options.deductibleReduction==true)
-    {
+
+        event.options.deductibleReduction=true;
+
         event.price = event.price + event.persons;
-    }
+
 
   	})
 }
