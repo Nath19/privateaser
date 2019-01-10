@@ -239,3 +239,42 @@ console.log("Step 4")
 console.log("As we can see just two of the events have choosen the deductible reduction")
 deductible()
 events.forEach(event=>{console.log("After the deductible reduction the price is : "+event.price);});
+
+
+
+
+
+
+
+
+//Step 5
+//Pay the actors
+
+
+function pay_actor()
+{
+  events.forEach(event=>{
+  	actors.forEach(actor =>{
+  		if(actor.eventId==event.id){
+  			actor.payment[1].amount=event.price- event.price*0.3;
+  			actor.payment[2].amount=0.5*event.price*0.3;
+  			actor.payment[3].amount=event.persons;
+  			if(event.options.deductibleReduction==true){
+
+  				actor.payment[4].amount=200+(event.price*0.3)-(actor.payment[2].amount+actor.payment[3].amount);
+
+  			}
+  			else{
+  			actor.payment[4].amount=5000+(event.price*0.3)-(actor.payment[2].amount+actor.payment[3].amount);
+  			}
+  		}
+  	})
+  });
+}
+
+console.log("Step 5");
+console.log("Pay the actors")
+pay_actor()
+actors.forEach(actor=>{console.log(
+	"Amount for the bar : "+actor.payment[1].amount+"\n"+"Amount for the insurance is : "+actor.payment[2].amount+"\n"+"Amount for treasury is : "+actor.payment[3].amount	+"\n"+"Amount for the privateaser is : "+actor.payment[4].amount);
+})
